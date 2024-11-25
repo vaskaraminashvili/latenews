@@ -1,0 +1,11 @@
+models:
+  News:
+    title: string
+    slug: string
+    description: text
+    short_desc: text
+    video_link: string
+    author_id: foreign:users
+    status: string
+    publish_date: timestamp
+    deleted_at: timestamp

@@ -1,0 +1,7 @@
+created:
+    - database/factories/NewsFactory.php
+    - database/migrations/2024_11_25_100638_create_news_table.php
+    - app/Models/News.php
+models:
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    News: { title: string, slug: string, description: text, short_desc: text, video_link: string, author_id: 'foreign:users', status: string, publish_date: timestamp, deleted_at: timestamp }
