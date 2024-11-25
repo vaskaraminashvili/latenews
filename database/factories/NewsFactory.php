@@ -3,18 +3,17 @@
 namespace Database\Factories;
 
 use App\Enums\NewsStatus;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use App\Models\News;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class NewsFactory extends Factory
 {
+
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
-    protected $model = News::class;
+     * protected $model = News::class;
      */
 
     /**
@@ -23,10 +22,10 @@ class NewsFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(4),
+            'title' => $this->generateTranslatableField(['ka', 'en']),
             'slug' => $this->faker->slug(),
-            'description' => $this->faker->text(),
-            'short_desc' => $this->faker->text(),
+            'description' => $this->generateTranslatableField(['ka', 'en']),
+            'short_desc' => $this->generateTranslatableField(['ka', 'en']),
             'video_link' => $this->faker->word(),
             'author_id' => User::factory(),
             'status' => $this->faker->randomElement(NewsStatus::class),
@@ -34,4 +33,18 @@ class NewsFactory extends Factory
             'deleted_at' => $this->faker->dateTime(),
         ];
     }
+
+
+    protected function generateTranslatableField(
+        array $locales,
+        $number = 4
+    ): array {
+        $field = [];
+        foreach ($locales as $locale) {
+            $field[$locale]
+                = $this->faker->sentence($number); // Generate fake data for each locale
+        }
+        return $field;
+    }
+
 }
