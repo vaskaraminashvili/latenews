@@ -17,13 +17,13 @@ return new class extends Migration {
             $table->id();
             $table->json('title');
             $table->string('slug');
-            $table->json('description');
-            $table->json('short_desc');
-            $table->string('video_link');
+            $table->json('description')->nullable();
+            $table->json('short_desc')->nullable();
+            $table->string('video_link')->nullable();
             $table->foreignId('author_id')->constrained('users');
             $table->string('status');
             $table->timestamp('publish_date');
-            $table->timestamp('deleted_at');
+            $table->softDeletes();
             $table->timestamps();
         });
 
