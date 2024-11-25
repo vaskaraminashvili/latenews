@@ -9,4 +9,12 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateNews extends CreateRecord
 {
     protected static string $resource = NewsResource::class;
+
+    use CreateRecord\Concerns\Translatable;
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\LocaleSwitcher::make(),
+        ];
+    }
 }

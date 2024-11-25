@@ -10,14 +10,21 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Concerns\Translatable;
 
 class NewsResource extends Resource
 {
+
+    use Translatable;
+
     protected static ?string $model = News::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['ka', 'en'];
+    }
 
     public static function form(Form $form): Form
     {
@@ -77,9 +84,10 @@ class NewsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListNews::route('/'),
+            'index'  => Pages\ListNews::route('/'),
             'create' => Pages\CreateNews::route('/create'),
-            'edit' => Pages\EditNews::route('/{record}/edit'),
+            'edit'   => Pages\EditNews::route('/{record}/edit'),
         ];
     }
+
 }

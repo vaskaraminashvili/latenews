@@ -6,11 +6,15 @@ use Filament\Forms;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Translatable\HasTranslations;
 
 class News extends Model
 {
 
     use HasFactory;
+    use HasTranslations;
+
+    public array $translatable = ['title', 'description', 'short_desc'];
 
     protected $fillable
         = [
@@ -36,13 +40,6 @@ class News extends Model
             'publish_date' => 'timestamp',
             'deleted_at'   => 'timestamp',
         ];
-
-    public function author(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-
 
     public static function getForm(): array
     {
@@ -72,4 +69,10 @@ class News extends Model
                 ->required(),
         ];
     }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

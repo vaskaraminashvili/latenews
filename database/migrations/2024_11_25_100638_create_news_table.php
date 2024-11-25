@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
+
     /**
      * Run the migrations.
      */
@@ -15,10 +15,10 @@ return new class extends Migration
 
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->json('title');
             $table->string('slug');
-            $table->text('description');
-            $table->text('short_desc');
+            $table->json('description');
+            $table->json('short_desc');
             $table->string('video_link');
             $table->foreignId('author_id')->constrained('users');
             $table->string('status');
@@ -37,4 +37,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('news');
     }
+
 };
