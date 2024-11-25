@@ -33,8 +33,6 @@ class NewsResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('video_link')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('author.name')
                     ->numeric()
                     ->sortable(),
