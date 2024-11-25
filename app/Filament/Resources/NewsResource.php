@@ -5,12 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\NewsResource\Pages;
 use App\Filament\Resources\NewsResource\RelationManagers;
 use App\Models\News;
-use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Resources\Concerns\Translatable;
 
 class NewsResource extends Resource
 {
@@ -37,8 +36,6 @@ class NewsResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('author.name')
                     ->numeric()
@@ -71,7 +68,8 @@ class NewsResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('id', 'desc');
     }
 
     public static function getRelations(): array
@@ -84,9 +82,9 @@ class NewsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListNews::route('/'),
+            'index' => Pages\ListNews::route('/'),
             'create' => Pages\CreateNews::route('/create'),
-            'edit'   => Pages\EditNews::route('/{record}/edit'),
+            'edit' => Pages\EditNews::route('/{record}/edit'),
         ];
     }
 

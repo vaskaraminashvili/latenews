@@ -30,7 +30,6 @@ class NewsFactory extends Factory
             'author_id' => User::factory(),
             'status' => $this->faker->randomElement(NewsStatus::class),
             'publish_date' => $this->faker->dateTime(),
-            'deleted_at' => $this->faker->dateTime(),
         ];
     }
 
