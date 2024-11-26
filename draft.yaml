@@ -1,11 +1,13 @@
 models:
-  News:
-    title: string
+  Category:
+    title: json
     slug: string
-    description: text
-    short_desc: text
-    video_link: string
-    author_id: foreign:users
-    status: string
-    publish_date: timestamp
+    description: json nullable
+    status: boolean
+    deleted_at: timestamp
+
+  Tag:
+    title: json
+    slug: string
+    status: boolean
     deleted_at: timestamp

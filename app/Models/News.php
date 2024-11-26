@@ -7,6 +7,7 @@ use Filament\Forms;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -88,7 +89,7 @@ class News extends Model
             $model->getSlugOptions();
         });
     }
-    
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
@@ -101,6 +102,16 @@ class News extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
 }

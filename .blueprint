@@ -1,7 +1,12 @@
 created:
-    - database/factories/NewsFactory.php
-    - database/migrations/2024_11_25_100638_create_news_table.php
-    - app/Models/News.php
+    - database/factories/CategoryFactory.php
+    - database/factories/TagFactory.php
+    - database/migrations/2024_11_26_115935_create_categories_table.php
+    - database/migrations/2024_11_26_115936_create_tags_table.php
+    - app/Models/Category.php
+    - app/Models/Tag.php
 models:
+    News: { title: json, slug: string, description: 'json nullable', short_desc: 'json nullable', video_link: 'string nullable', author_id: 'biginteger unsigned', status: string, publish_date: timestamp }
     User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
-    News: { title: string, slug: string, description: text, short_desc: text, video_link: string, author_id: 'foreign:users', status: string, publish_date: timestamp, deleted_at: timestamp }
+    Category: { title: json, slug: string, description: 'json nullable', status: boolean, deleted_at: timestamp }
+    Tag: { title: json, slug: string, status: boolean, deleted_at: timestamp }
