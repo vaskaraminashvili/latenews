@@ -47,7 +47,6 @@ class Category extends Model
                         ->required(),
                     Forms\Components\TextInput::make('slug')
                         ->disabled()
-                        ->required()
                         ->maxLength(255),
                     Forms\Components\RichEditor::make('description'),
                     Forms\Components\Toggle::make('status')

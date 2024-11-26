@@ -44,9 +44,7 @@ class Tag extends Model
                     Forms\Components\TextInput::make('title')
                         ->required(),
                     Forms\Components\TextInput::make('slug')
-                        ->disabled()
-                        ->required()
-                        ->maxLength(255),
+                        ->disabled(),
                     Forms\Components\Toggle::make('status')
                         ->required(),
                 ])
