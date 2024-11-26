@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Filament\Forms;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
@@ -34,6 +35,26 @@ class Category extends Model
         'status' => 'boolean',
         'deleted_at' => 'timestamp',
     ];
+
+    public static function getForm(): array
+    {
+        return [
+            Forms\Components\Section::make()
+                ->description('News categoy')
+                ->aside()
+                ->schema([
+                    Forms\Components\TextInput::make('title')
+                        ->required(),
+                    Forms\Components\TextInput::make('slug')
+                        ->disabled()
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\RichEditor::make('description'),
+                    Forms\Components\Toggle::make('status')
+                        ->required(),
+                ])
+        ];
+    }
 
     protected static function boot()
     {

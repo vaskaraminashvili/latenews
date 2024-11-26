@@ -55,6 +55,14 @@ class News extends Model
                 ->description('Create Something exiting')
                 ->aside()
                 ->schema([
+                    Forms\Components\Select::make('category_id')
+                        ->relationship('categories', 'title')
+                        ->multiple()
+                        ->preload(),
+                    Forms\Components\Select::make('tag_id')
+                        ->relationship('tags', 'title')
+                        ->multiple()
+                        ->preload(),
                     Forms\Components\TextInput::make('title')
                         ->required()
                         ->maxLength(255),
