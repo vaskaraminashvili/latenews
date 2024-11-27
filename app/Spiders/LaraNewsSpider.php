@@ -58,16 +58,14 @@ class LaraNewsSpider extends BasicSpider
                 ];
             });
 
-        foreach ($items as &$item) {
-            yield $this->request('GET', $item['url'], 'parseNewsPage', ['item' => &$item]);
+        foreach ($items as $item) {
+            yield $this->request('GET', $item['url'], 'parseNewsPage', ['item' => $item]);
         }
-//        yield $this->item($items);
     }
 
     public function parseNewsPage(Response $response): Generator
     {
         $item = $response->getRequest()->getOptions()['item'];
-
         $item['description'] = $response->filter('div.duet--article--article-body-component p')->innerText();
         $item['img'] = $response->filter('figure.duet--article--lede-image img')->attr('src');
         yield $this->item($item);
