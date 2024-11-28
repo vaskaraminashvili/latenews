@@ -27,7 +27,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         News::factory(100)->create();
-        Category::factory(40)->create();
+        Category::factory(10)
+            ->has(
+                Category::factory()
+                    ->has(
+                        Category::factory()->count(4), 'children'
+                    )
+                    ->count(3)
+                , 'children')
+            ->create();
         Tag::factory(30)->create();
 
         $news = News::all();
