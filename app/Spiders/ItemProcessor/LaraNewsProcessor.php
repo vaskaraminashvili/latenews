@@ -3,6 +3,7 @@
 namespace App\Spiders\ItemProcessor;
 
 
+use App\Models\Category;
 use App\Models\News;
 use RoachPHP\ItemPipeline\ItemInterface;
 use RoachPHP\ItemPipeline\Processors\ItemProcessorInterface;
@@ -23,15 +24,21 @@ class LaraNewsProcessor implements ItemProcessorInterface
                 'ka' => $data['description']
             ],
             'short_desc' => [
-                'en' => $data['desc'],
-                'ka' => $data['desc']
+                'en' => $data['description'],
+                'ka' => $data['description']
             ],
             'author_id' => 2, // Or find/create author
             'status' => 'Not Active', // Default status
-            'publish_date' => now()->addDay()
+            'publish_date' => $data['date']
         ]);
-        $news->addMediaFromUrl($data['img'])->toMediaCollection('news');
+        if (!empty($data['img'])) {
+            $news->addMediaFromUrl($data['img'])->toMediaCollection('news');
+        }
         $news->getSlugOptions();
+        $amazon_category = Category::query()
+            ->where('slug', $data['category_slug'])
+            ->first();
+        $news->categories()->attach($amazon_category);
         return $item; // Pass the item to the next pipeline stage
     }
 
