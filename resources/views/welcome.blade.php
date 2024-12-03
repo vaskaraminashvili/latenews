@@ -1,2 +1,14 @@
-<a href="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" download="image.gif">Download
-    Image</a>
+<x-layout>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    @foreach($categories as $category)
+                        <x-category-item :category="$category"/>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</x-layout>
