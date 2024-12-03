@@ -5,15 +5,14 @@ namespace App\Models;
 use Filament\Forms;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kalnoy\Nestedset\NodeTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
-    use HasFactory;
-    use HasTranslations;
-    use HasSlug;
+    use HasFactory, HasTranslations, HasSlug, NodeTrait;
 
     public array $translatable = ['title', 'description'];
     protected $fillable = [

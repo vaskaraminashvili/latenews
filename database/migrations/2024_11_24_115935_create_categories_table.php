@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('slug');
             $table->json('description')->nullable();
             $table->boolean('status');
+            $table->nestedSet();
             $table->softDeletes();
             $table->timestamps();
         });

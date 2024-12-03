@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\NewsStatus;
+use CodeWithDennis\FilamentSelectTree\SelectTree;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -60,10 +61,15 @@ class News extends Model implements HasMedia
                 ->description('Create Something exiting')
                 ->aside()
                 ->schema([
-                    Forms\Components\Select::make('category_id')
-                        ->relationship('categories', 'title')
-                        ->multiple()
-                        ->preload(),
+                    SelectTree::make('category_id')
+                        ->relationship('categories', 'title', 'parent_id')
+                        ->independent(false)
+                        ->searchable()
+                        ->withCount(),
+//                    Forms\Components\Select::make('category_id')
+//                        ->relationship('categories', 'title')
+//                        ->multiple()
+//                        ->preload(),
                     Forms\Components\Select::make('tag_id')
                         ->relationship('tags', 'title')
                         ->multiple()
