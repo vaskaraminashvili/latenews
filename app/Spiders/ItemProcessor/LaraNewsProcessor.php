@@ -6,7 +6,6 @@ namespace App\Spiders\ItemProcessor;
 use App\Models\Category;
 use App\Models\News;
 use App\Services\GoogleTranslateClientService;
-use App\Services\ParaphraseService;
 use RoachPHP\ItemPipeline\ItemInterface;
 use RoachPHP\ItemPipeline\Processors\ItemProcessorInterface;
 
@@ -17,12 +16,13 @@ class LaraNewsProcessor implements ItemProcessorInterface
         // Convert the item to an array for saving
         $data = $item->all();
         $translator = resolve(GoogleTranslateClientService::class);
-        $paraphrase = resolve(ParaphraseService::class);
+//        $paraphrase = resolve(ParaphraseService::class);
 
         $title_ka = $translator->translate($data['title']);
         $title_en = $data['title'];
 
-        $new_description = $paraphrase->paraphrase($data['description']);
+//        $new_description = $paraphrase->paraphrase($data['description']);
+        $new_description = $data['description'];
 
         $description_ka = $translator->translate($new_description);
         $description_en = $new_description;

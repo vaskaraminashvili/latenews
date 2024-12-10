@@ -18,7 +18,29 @@ class LaraNewsSpider extends BasicSpider
     public string $category_slug = '';
 
     public array $startUrls = [
-        'https://www.theverge.com/amazon'
+//        'https://www.theverge.com/amazon',
+//        'https://www.theverge.com/apple',
+//        'https://www.theverge.com/facebook',
+//        'https://www.theverge.com/google',
+//        'https://www.theverge.com/samsung',
+//        'https://www.theverge.com/deals',
+//        'https://www.theverge.com/gift-guide',
+//        'https://www.theverge.com/laptops',
+//        'https://www.theverge.com/phones',
+//        'https://www.theverge.com/headphones',
+//        'https://www.theverge.com/smart-home',
+//        'https://www.theverge.com/smartwatches',
+//        'https://www.theverge.com/speakers',
+//        'https://www.theverge.com/drones',
+
+        'https://www.theverge.com/games',
+        'https://www.theverge.com/tv-shows',
+        'https://www.theverge.com/movies',
+
+        'https://www.theverge.com/cars',
+        'https://www.theverge.com/electric-cars',
+        'https://www.theverge.com/autonomous-cars',
+
     ];
 
     public array $downloaderMiddleware = [
@@ -47,7 +69,7 @@ class LaraNewsSpider extends BasicSpider
      */
     public function parse(Response $response): \Generator
     {
-        $category_slug = substr(strrchr($this->startUrls[0], '/'), 1);
+        $category_slug = substr(strrchr($response->getUri(), '/'), 1);
 
         $items = $response
             ->filter('.duet--content-cards--content-card.relative.flex.flex-row.border-b.border-solid.border-gray-cc.px-0.last-of-type\:border-b-0.dark\:border-gray-31.py-16.hover\:bg-\[\#FBF9FF\].dark\:hover\:bg-gray-18.max-w-container-md.last-of-type\:border-b-0.md\:pl-20')

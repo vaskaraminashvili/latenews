@@ -18,7 +18,7 @@ class ParaphraseService
         ])->post($this->api_url, [
             'inputs' => "Paraphrase the text : {$text}",
             'parameters' => [
-                'max_new_tokens' => 250
+                'max_new_tokens' => 180
             ]
         ]);
 
