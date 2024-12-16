@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use App\Models\News;
-use App\Models\Tag;
 use App\Models\User;
+use App\Spiders\LaraNewsSpider;
 use Illuminate\Database\Seeder;
+use RoachPHP\Roach;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -25,9 +25,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
         ]);
-
-        News::factory(100)->create();
-
 
         $categories = [
             "Business" => [
@@ -86,7 +83,13 @@ class DatabaseSeeder extends Seeder
                 }
             }
         }
+        ini_set('memory_limit', '2048M');
+        set_time_limit(3000);
+        ini_set('max_execution_time', 3000);
+        Roach::collectSpider(LaraNewsSpider::class);
 
+
+//        this is for demo data
 
 //        $categories = [
 //            'Business' => [
@@ -115,17 +118,17 @@ class DatabaseSeeder extends Seeder
 //                    ->count(3)
 //                , 'children')
 //            ->create();
-        Tag::factory(30)->create();
-
-        $news = News::all();
-        $categories = Category::query()
-            ->whereNull('parent_id')
-            ->get();
-        $tags = Tag::all();
-        foreach ($news as $new) {
-            $new->categories()->attach($categories->random());
-            $new->tags()->attach($tags->random());
-        }
+//        Tag::factory(30)->create();
+//
+//        $news = News::all();
+//        $categories = Category::query()
+//            ->whereNull('parent_id')
+//            ->get();
+//        $tags = Tag::all();
+//        foreach ($news as $new) {
+//            $new->categories()->attach($categories->random());
+//            $new->tags()->attach($tags->random());
+//        }
     }
 
 }

@@ -41,8 +41,16 @@ class NewsResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(function ($state) {
+                        return $state->getColor();
+                    })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('publish_date')
+                    ->badge()
+                    ->color(function ($state) {
+                        return $state->isBefore(now()) ? 'success' : 'warning';
+                    })
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('deleted_at')
@@ -69,7 +77,7 @@ class NewsResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->defaultSort('id', 'desc');
+            ->defaultSort('publish_date', 'desc');
     }
 
     public static function getRelations(): array

@@ -13,15 +13,12 @@ class LaraNewsProcessor implements ItemProcessorInterface
 {
     public function processItem(ItemInterface $item): ItemInterface
     {
-        // Convert the item to an array for saving
         $data = $item->all();
         $translator = resolve(GoogleTranslateClientService::class);
-//        $paraphrase = resolve(ParaphraseService::class);
 
         $title_ka = $translator->translate($data['title']);
         $title_en = $data['title'];
 
-//        $new_description = $paraphrase->paraphrase($data['description']);
         $new_description = $data['description'];
 
         $description_ka = $translator->translate($new_description);
@@ -40,7 +37,7 @@ class LaraNewsProcessor implements ItemProcessorInterface
                 'en' => $data['description'],
                 'ka' => $data['description']
             ],
-            'author_id' => 2, // Or find/create author
+            'author_id' => 1, // Or find/create author
             'status' => 'Not Active', // Default status
             'publish_date' => $data['date']
         ]);

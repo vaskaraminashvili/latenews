@@ -50,7 +50,8 @@ class News extends Model implements HasMedia
         = [
             'id' => 'integer',
             'author_id' => 'integer',
-            'publish_date' => 'timestamp',
+            'status' => NewsStatus::class,
+            'publish_date' => 'datetime',
             'deleted_at' => 'timestamp',
         ];
 
@@ -95,6 +96,7 @@ class News extends Model implements HasMedia
                     Forms\Components\DateTimePicker::make('publish_date')
                         ->native(false)
                         ->seconds(false)
+                        ->minDate(now()->startOfDay())
                         ->required(),
                     SpatieMediaLibraryFileUpload::make('img')
                         ->collection('news')
