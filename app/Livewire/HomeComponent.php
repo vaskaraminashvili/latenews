@@ -9,12 +9,17 @@ class HomeComponent extends Component
 {
     public $latestNews;
     public $slideNews;
+    public $bussinessNews;
+    public $technologyNews;
+    public $entertainmentNews;
 
     public function mount()
     {
-//        $item = News::find(117);
-//        dd($item->getFirstMediaUrl('news'));
-        $this->latestNews = News::has('media')->latest()->whereStatus('Active')->take(7)->get();
+        $this->latestNews = News::has('media')
+            ->latest()
+            ->whereStatus('Active')
+            ->take(7)
+            ->get();
 
         $this->slideNews = News::has('media')
             ->latest()
@@ -24,7 +29,33 @@ class HomeComponent extends Component
                 }
             ])
             ->whereStatus('Active')
-            ->take(4)->get();
+            ->take(4)
+            ->get();
+
+        $this->bussinessNews = News::has('media')
+//            ->with(['categories'])
+            ->whereStatus('Active')
+            ->whereHas('categories', function ($q) {
+                $q->where('parent_id', 1);
+            })
+            ->take(4)
+            ->get();
+        $this->technologyNews = News::has('media')
+//            ->with(['categories'])
+            ->whereStatus('Active')
+            ->whereHas('categories', function ($q) {
+                $q->where('parent_id', 9);
+            })
+            ->take(4)
+            ->get();
+        $this->entertainmentNews = News::has('media')
+//            ->with(['categories'])
+            ->whereStatus('Active')
+            ->whereHas('categories', function ($q) {
+                $q->where('parent_id', 20);
+            })
+            ->take(4)
+            ->get();
     }
 
     public function render()
