@@ -140,7 +140,6 @@ class News extends Model implements HasMedia
         return $this->belongsToMany(Tag::class);
     }
 
-
     public function registerMediaCollections(): void
     {
         $this
@@ -164,6 +163,11 @@ class News extends Model implements HasMedia
             ->width(300)
             ->height(100)
             ->nonQueued();
+    }
+
+    public function getImgAttribute()
+    {
+        return $this->getFirstMediaUrl('news') ? $this->getFirstMediaUrl('news') : asset('website/assets/images/latenews.png');
     }
 
 }

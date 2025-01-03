@@ -12,9 +12,12 @@ class HomeComponent extends Component
 
     public function mount()
     {
-        $this->latestNews = News::latest()->whereStatus('Active')->take(7)->get();
+//        $item = News::find(117);
+//        dd($item->getFirstMediaUrl('news'));
+        $this->latestNews = News::has('media')->latest()->whereStatus('Active')->take(7)->get();
 
-        $this->slideNews = News::latest()
+        $this->slideNews = News::has('media')
+            ->latest()
             ->with([
                 'author' => function ($q) {
                     $q->select('id', 'name');

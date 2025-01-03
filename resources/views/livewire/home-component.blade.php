@@ -20,8 +20,9 @@
                                                         <div class="col-auto">
                                                             <div class="post-media panel overflow-hidden max-w-64px min-w-64px">
                                                                 <div class="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-1x1">
+
                                                                     <img class="media-cover image uc-transition-scale-up uc-transition-opaque"
-                                                                         src="https://html.themewant.com/news5/assets/images/demo-seven/posts/img-0{{rand(1,6)}}.jpg"
+                                                                         src="{{$item->img}}"
 
                                                                          alt="Hidden Gems: Underrated Travel Destinations Around the World"
                                                                          data-uc-img="loading: lazy">
@@ -80,13 +81,13 @@
                                                                 <div class="featured-image bg-gray-25 dark:bg-gray-800 h-100 d-none md:d-block">
                                                                     <canvas class="h-100 w-100"></canvas>
                                                                     <img class="media-cover image uc-transition-scale-up uc-transition-opaque"
-                                                                         src="https://html.themewant.com/news5/assets/images/demo-seven/posts/img-0{{rand(1,6)}}.jpg"
+                                                                         src="{{$item->img}}"
                                                                          alt="Solo Travel: Some Tips and Destinations for the Adventurous Explorer"
                                                                          data-uc-img="loading: lazy">
                                                                 </div>
                                                                 <div class="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-16x9 d-block md:d-none">
                                                                     <img class="media-cover image uc-transition-scale-up uc-transition-opaque"
-                                                                         src="https://html.themewant.com/news5/assets/images/demo-seven/posts/img-0{{rand(1,6)}}.jpg"
+                                                                         src="{{$item->img}}"
                                                                          alt="Solo Travel: Some Tips and Destinations for the Adventurous Explorer"
                                                                          data-uc-img="loading: lazy">
                                                                 </div>
