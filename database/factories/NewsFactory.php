@@ -29,7 +29,7 @@ class NewsFactory extends Factory
             'video_link' => $this->faker->word(),
             'author_id' => User::factory(),
             'status' => $this->faker->randomElement(NewsStatus::class),
-            'publish_date' => $this->faker->dateTime(),
+            'publish_date' => $this->faker->dateTimeBetween('-1 year', '+1 month'),
         ];
     }
 
