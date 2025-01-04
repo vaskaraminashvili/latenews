@@ -5,6 +5,7 @@ namespace App\Models;
 use Filament\Forms;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Kalnoy\Nestedset\NodeTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -70,5 +71,10 @@ class Category extends Model
                 return $this->getTranslation('title', 'ka');
             })
             ->saveSlugsTo('slug');
+    }
+
+    public function news(): BelongsToMany
+    {
+        return $this->belongsToMany(News::class);
     }
 }

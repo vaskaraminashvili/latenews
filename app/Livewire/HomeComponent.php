@@ -2,12 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Models\Category;
 use App\Models\News;
 use Livewire\Component;
 
 class HomeComponent extends Component
 {
     public $latestNews;
+    public $restLatestNews;
     public $slideNews;
     public $bussinessNews;
     public $technologyNews;
@@ -15,46 +17,52 @@ class HomeComponent extends Component
 
     public function mount()
     {
-        $this->latestNews = News::has('media')
+        $called_ids = [];
+        $news = News::has('media')
+            ->with(['media', 'author', 'categories'])
             ->latest()
             ->whereStatus('Active')
-            ->take(7)
+            ->take(15)
             ->get();
 
-        $this->slideNews = News::has('media')
-            ->latest()
+        $called_ids = $news->pluck('id');
+
+        $this->latestNews = $news->take(7);
+        $this->slideNews = $news->skip(7)->take(7);
+
+        $categoryNews = Category::query()
+            ->whereIn('parent_id', [1, 9, 20])
             ->with([
-                'author' => function ($q) {
-                    $q->select('id', 'name');
+                'news' => function ($news) {
+                    $news->with(['media'])
+                        ->has('media')
+                        ->where('status', 'Active')
+                        ->latest()
+                        ->take(4);
                 }
             ])
-            ->whereStatus('Active')
-            ->take(4)
             ->get();
 
-        $this->bussinessNews = News::has('media')
-//            ->with(['categories'])
+        $transformedNews = $categoryNews
+            ->groupBy('parent_id')
+            ->map(function ($categories) use (&$called_ids) {
+                $allNews = $categories->pluck('news')->flatten(1);
+                $allNews = $allNews->take(4);
+                $called_ids = $called_ids->merge($allNews->pluck('id'));
+                return $allNews;
+            });
+        $this->bussinessNews = $transformedNews[1]; //bussness
+        $this->technologyNews = $transformedNews[9]; // technology
+        $this->entertainmentNews = $transformedNews[20]; // entarnainent
+
+
+        $this->restLatestNews = News::query()
+            ->has('media')
+            ->whereNotIn('id', $called_ids->unique())
+            ->with(['media', 'author', 'categories'])
+            ->latest()
             ->whereStatus('Active')
-            ->whereHas('categories', function ($q) {
-                $q->where('parent_id', 1);
-            })
-            ->take(4)
-            ->get();
-        $this->technologyNews = News::has('media')
-//            ->with(['categories'])
-            ->whereStatus('Active')
-            ->whereHas('categories', function ($q) {
-                $q->where('parent_id', 9);
-            })
-            ->take(4)
-            ->get();
-        $this->entertainmentNews = News::has('media')
-//            ->with(['categories'])
-            ->whereStatus('Active')
-            ->whereHas('categories', function ($q) {
-                $q->where('parent_id', 20);
-            })
-            ->take(4)
+            ->take(15)
             ->get();
     }
 

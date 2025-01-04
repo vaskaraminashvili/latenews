@@ -90,7 +90,7 @@
     </div>
 </div>
 
-<!--  Menu panel -->
+<!--  Menu panel MOBILE -->
 <div id="uc-menu-panel" data-uc-offcanvas="overlay: true;">
     <div class="uc-offcanvas-bar bg-white text-dark dark:bg-gray-900 dark:text-white">
         <header class="uc-offcanvas-header hstack justify-between items-center pb-4 bg-white dark:bg-gray-900">
@@ -113,87 +113,23 @@
                         </span>
             </form>
             <ul class="nav-y gap-narrow fw-bold fs-5" data-uc-nav>
-                <li class="uc-parent">
-                    <a href="#">Homepages</a>
-                    <ul class="uc-nav-sub" data-uc-nav="">
-                        <li><a href="index.html">Main</a></li>
-                        <li><a href="../demo-two/index.html">Classic News</a></li>
-                        <li><a href="../demo-three/index.html">Tech</a></li>
-                        <li><a href="../demo-four/index.html">Classic Blog</a></li>
-                        <li><a href="../demo-five/index.html">Gaming</a></li>
-                        <li><a href="../demo-six/index.html">Sports</a></li>
-                        <li><a href="../demo-seven/index.html">Newspaper</a></li>
-                        <li><a href="../demo-eight/index.html">Magazine</a></li>
-                        <li><a href="../demo-nine/index.html">Travel</a></li>
-                        <li><a href="../demo-ten/index.html">Food</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Latest</a></li>
-                <li><a href="#">Trending</a></li>
-                <li class="uc-parent">
-                    <a href="#">Inner Pages</a>
-                    <ul class="uc-nav-sub" data-uc-nav="">
+                @foreach($categories as $category)
+                    @if(count($category->children))
                         <li class="uc-parent">
-                            <a href="blog.html">Blog</a>
-                            <ul class="uc-nav-sub">
-                                <li><a href="blog.html">Full Width</a></li>
-                                <li><a href="blog-2cols.html">Grid 2 Cols</a></li>
-                                <li><a href="blog-3cols.html">Grid 3 Cols</a></li>
-                                <li><a href="blog-4cols.html">Grid 4 Cols</a></li>
+                            <a href="#">{{$category->title}}</a>
+                            <ul class="uc-nav-sub" data-uc-nav="">
+                                @foreach($category->children as $child)
+                                    <li>
+                                        <a href="{{route('news.category', $child->slug)}}">{{$child->title}}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
-                        <li class="uc-parent">
-                            <a href="blog-details.html">Blog - detail</a>
-                            <ul class="uc-nav-sub">
-                                <li><a href="blog-details.html">Blog detail</a></li>
-                                <li><a href="blog-details-2.html">Blog detail - v2</a></li>
-                            </ul>
-                        </li>
-                        <li class="uc-parent">
-                            <a href="#">Useful pages</a>
-                            <ul class="uc-nav-sub">
-                                <li><a href="sign-up.html">Sign up</a></li>
-                                <li><a href="sign-in.html">Sign in</a></li>
-                                <li><a href="reset-password.html">Reset password</a></li>
-                                <li><a href="404.html">404 page</a></li>
-                                <li><a href="coming-soon.html">Coming soon</a></li>
-                            </ul>
-                        </li>
-                        <li class="uc-parent">
-                            <a href="#">Other pages</a>
-                            <ul class="uc-nav-sub">
-                                <li><a href="page-faq.html">FAQ</a></li>
-                                <li><a href="page-terms.html">Terms of use</a></li>
-                                <li><a href="page-privacy.html">Privacy policy</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="uc-parent">
-                    <a href="shop.html">Shop</a>
-                    <ul class="uc-nav-sub" data-uc-nav="">
-                        <li class="uc-parent">
-                            <a href="shop.html">Shop layouts</a>
-                            <ul class="uc-nav-sub">
-                                <li><a href="shop.html">Shop 4 cols</a></li>
-                                <li><a href="shop-3.html">Shop 3 cols</a></li>
-                                <li><a href="shop-2.html">Shop 2 cols</a></li>
-                                <li><a href="shop-sidebar.html">Shop with sidebar</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="shop-category.html">Archive category</a></li>
-                        <li><a href="shop-product-detail.html">Product detail</a></li>
-                        <li><a href="shop-product-detail-2.html">Product detail - v2</a></li>
-                        <li><a href="shop-cart.html">Cart</a></li>
-                        <li><a href="shop-cart-2.html">Cart - v2</a></li>
-                        <li><a href="shop-checkout.html">Checkout</a></li>
-                        <li><a href="shop-checkout-2.html">Checkout - v2</a></li>
-                        <li><a href="shop-order.html">Order confirmation</a></li>
-                    </ul>
-                </li>
-                <li class="hr opacity-10 my-1"></li>
-                <li><a href="sign-in.html">Sign in</a></li>
-                <li><a href="sign-up.html">Create an account</a></li>
+                    @else
+                        <li><a href="#">Latest</a></li>
+                    @endif
+
+                @endforeach
             </ul>
             <ul class="social-icons nav-x mt-4">
                 <li>
@@ -215,36 +151,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-
-<!--  Favorites modal -->
-<div id="uc-favorites-modal" data-uc-modal="overlay: true">
-    <div class="uc-modal-dialog lg:max-w-500px bg-white text-dark dark:bg-gray-800 dark:text-white rounded">
-        <button class="uc-modal-close-default p-0 icon-3 btn border-0 dark:text-white dark:text-opacity-50 hover:text-primary hover:rotate-90 duration-150 transition-all"
-                type="button">
-            <i class="unicon-close"></i>
-        </button>
-        <div class="panel vstack justify-center items-center gap-2 text-center px-3 py-8">
-            <i class="icon icon-4 unicon-bookmark mb-2 text-primary dark:text-white"></i>
-            <h2 class="h4 md:h3 m-0">Saved articles</h2>
-            <p class="fs-5 opacity-60">You have not yet added any article to your bookmarks!</p>
-            <a href="index.html" class="btn btn-sm btn-primary mt-2 uc-modal-close">Browse articles</a>
-        </div>
-    </div>
-</div>
-
-
-<!--  GDPR modal -->
-<div id="uc-gdpr-notification" class="uc-gdpr-notification uc-notification uc-notification-bottom-left lg:m-2">
-    <div class="uc-notification-message">
-        <a id="uc-close-gdpr-notification" class="uc-notification-close" data-uc-close></a>
-        <h2 class="h5 ft-primary fw-bold -ls-1 m-0">GDPR Compliance</h2>
-        <p class="fs-7 mt-1 mb-2">We use cookies to ensure you get the best experience on our website. By continuing to
-            use our site, you accept our use of cookies, <a href="page-privacy.html" class="uc-link text-underline">Privacy
-                Policy</a>, and <a href="page-terms.html" class="uc-link text-underline">Terms of Service</a>.</p>
-        <button class="btn btn-sm btn-primary" id="uc-accept-gdpr">Accept</button>
     </div>
 </div>
 
@@ -292,7 +198,7 @@
         <div class="uc-center-navbar panel hstack z-2 min-h-48px d-none lg:d-flex"
              data-uc-navbar=" animation: uc-animation-slide-top-small; duration: 150;">
             <div class="container max-w-xl">
-                <x-header-navbar/>
+                <x-header-navbar :categories="$categories"/>
             </div>
         </div>
         <div class="uc-bottom-navbar panel z-1">
@@ -377,14 +283,14 @@
                 <div class="uc-footer-bottom panel vstack gap-4 justify-center lg:fs-5">
                     <nav class="footer-nav">
                         <ul class="nav-x gap-2 lg:gap-4 justify-center text-center text-uppercase fw-medium">
-                            <li><a class="hover:text-gray-900 dark:hover:text-white duration-150"
-                                   href="blog-category.html">Politics</a></li>
-                            <li><a class="hover:text-gray-900 dark:hover:text-white duration-150"
-                                   href="blog-category.html">Opinions</a></li>
-                            <li><a class="hover:text-gray-900 dark:hover:text-white duration-150"
-                                   href="blog-category.html">World</a></li>
-                            <li><a class="hover:text-gray-900 dark:hover:text-white duration-150"
-                                   href="blog-category.html">Media</a></li>
+                            @foreach($categories as $category)
+                                <li>
+                                    <a class="hover:text-gray-900 dark:hover:text-white duration-150"
+                                       href="blog-category.html">
+                                        {{$category->title}}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </nav>
                     <div class="footer-social hstack justify-center gap-2 lg:gap-3">
