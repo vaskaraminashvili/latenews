@@ -125,6 +125,11 @@ class News extends Model implements HasMedia
             ->saveSlugsTo('slug');
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class);

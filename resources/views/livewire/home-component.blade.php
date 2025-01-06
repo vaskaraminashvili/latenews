@@ -27,14 +27,15 @@
                                                                          alt="Hidden Gems: Underrated Travel Destinations Around the World"
                                                                          data-uc-img="loading: lazy">
                                                                 </div>
-                                                                <a href="blog-details.html" class="position-cover"></a>
+                                                                <a href="{{route('news.show', $item->slug)}}"
+                                                                   class="position-cover"></a>
                                                             </div>
                                                         </div>
                                                         <div>
                                                             <div class="post-header panel vstack justify-between gap-1">
                                                                 <h3 class="post-title h6 m-0">
                                                                     <a class="text-none hover:text-primary duration-150"
-                                                                       href="blog-details.html">
+                                                                       href="{{route('news.show', $item->slug)}}">
                                                                         {{$item->title}}
                                                                     </a>
                                                                 </h3>
@@ -100,7 +101,7 @@
                                                                 </div>
                                                                 <h3 class="post-title h5 lg:h4 xl:h3 m-0 max-w-600px text-white">
                                                                     <a class="text-none text-white"
-                                                                       href="blog-details.html">{{$item->title}}</a>
+                                                                       href="{{route('news.show', $item->slug)}}">{{$item->title}}</a>
                                                                 </h3>
                                                                 <div>
                                                                     <div class="post-meta panel hstack justify-between fs-7 text-white text-opacity-60 mt-1">
@@ -238,7 +239,7 @@
                                                             </div>
                                                             <h3 class="post-title h6 lg:h5 m-0 m-0 max-w-600px text-white">
                                                                 <a class="text-none text-white"
-                                                                   href="blog-details.html">
+                                                                   href="{{route('news.show', $item->slug)}}">
                                                                     {{$item->title}}
                                                                 </a>
                                                             </h3>
@@ -246,7 +247,8 @@
                                                                 <span>1min</span>
                                                             </div>
                                                         </div>
-                                                        <a href="blog-details.html" class="position-cover"></a>
+                                                        <a href="{{route('news.show', $item->slug)}}"
+                                                           class="position-cover"></a>
                                                     </article>
                                                 </div>
 
@@ -258,7 +260,7 @@
                                                                 <div class="post-header panel vstack justify-between gap-1">
                                                                     <h3 class="post-title h6 m-0">
                                                                         <a class="text-none hover:text-primary duration-150"
-                                                                           href="blog-details.html">
+                                                                           href="{{route('news.show', $item->slug)}}">
                                                                             {{$item->title}}
                                                                         </a>
                                                                     </h3>
@@ -275,7 +277,7 @@
                                                                              alt="Tech Innovations Reshaping the Retail Landscape: AI Payments"
                                                                              data-uc-img="loading: lazy">
                                                                     </div>
-                                                                    <a href="blog-details.html"
+                                                                    <a href="{{route('news.show', $item->slug)}}"
                                                                        class="position-cover"></a>
                                                                 </div>
                                                             </div>
@@ -345,7 +347,7 @@
                                                             </div>
                                                             <h3 class="post-title h6 lg:h5 m-0 m-0 max-w-600px text-white">
                                                                 <a class="text-none text-white"
-                                                                   href="blog-details.html">
+                                                                   href="{{route('news.show', $item->slug)}}">
                                                                     {{$item->title}}
                                                                 </a>
                                                             </h3>
@@ -353,7 +355,8 @@
                                                                 <span>1min</span>
                                                             </div>
                                                         </div>
-                                                        <a href="blog-details.html" class="position-cover"></a>
+                                                        <a href="{{route('news.show', $item->slug)}}"
+                                                           class="position-cover"></a>
                                                     </article>
                                                 </div>
 
@@ -365,7 +368,7 @@
                                                                 <div class="post-header panel vstack justify-between gap-1">
                                                                     <h3 class="post-title h6 m-0">
                                                                         <a class="text-none hover:text-primary duration-150"
-                                                                           href="blog-details.html">
+                                                                           href="{{route('news.show', $item->slug)}}">
                                                                             {{$item->title}}
                                                                         </a>
                                                                     </h3>
@@ -382,7 +385,7 @@
                                                                              alt="Tech Innovations Reshaping the Retail Landscape: AI Payments"
                                                                              data-uc-img="loading: lazy">
                                                                     </div>
-                                                                    <a href="blog-details.html"
+                                                                    <a href="{{route('news.show', $item->slug)}}"
                                                                        class="position-cover"></a>
                                                                 </div>
                                                             </div>
@@ -452,7 +455,7 @@
                                                             </div>
                                                             <h3 class="post-title h6 lg:h5 m-0 m-0 max-w-600px text-white">
                                                                 <a class="text-none text-white"
-                                                                   href="blog-details.html">
+                                                                   href="{{route('news.show', $item->slug)}}">
                                                                     {{$item->title}}
                                                                 </a>
                                                             </h3>
@@ -460,7 +463,8 @@
                                                                 <span>1min</span>
                                                             </div>
                                                         </div>
-                                                        <a href="blog-details.html" class="position-cover"></a>
+                                                        <a href="{{route('news.show', $item->slug)}}"
+                                                           class="position-cover"></a>
                                                     </article>
                                                 </div>
 
@@ -472,7 +476,7 @@
                                                                 <div class="post-header panel vstack justify-between gap-1">
                                                                     <h3 class="post-title h6 m-0">
                                                                         <a class="text-none hover:text-primary duration-150"
-                                                                           href="blog-details.html">
+                                                                           href="{{route('news.show', $item->slug)}}">
                                                                             {{$item->title}}
                                                                         </a>
                                                                     </h3>
@@ -489,7 +493,7 @@
                                                                              alt="Tech Innovations Reshaping the Retail Landscape: AI Payments"
                                                                              data-uc-img="loading: lazy">
                                                                     </div>
-                                                                    <a href="blog-details.html"
+                                                                    <a href="{{route('news.show', $item->slug)}}"
                                                                        class="position-cover"></a>
                                                                 </div>
                                                             </div>
@@ -510,7 +514,7 @@
     </div>
 
     <!-- Section end -->
-    
+
     <!-- Section start -->
     <div id="latest_news" class="latest-news section panel">
         <div class="section-outer panel py-4 lg:py-6">
@@ -538,7 +542,7 @@
                                                                              alt="The Rise of AI-Powered Personal Assistants: How They Manage"
                                                                              data-uc-img="loading: lazy">
                                                                     </div>
-                                                                    <a href="blog-details.html"
+                                                                    <a href="{{route('news.show', $item->slug)}}"
                                                                        class="position-cover"></a>
                                                                 </div>
                                                             </div>
@@ -546,7 +550,7 @@
                                                                 <div class="post-header panel vstack justify-between gap-1">
                                                                     <h3 class="post-title h5 lg:h4 m-0">
                                                                         <a class="text-none hover:text-primary duration-150"
-                                                                           href="blog-details.html">
+                                                                           href="{{route('news.show', $item->slug)}}">
                                                                             {{$item->title}}
                                                                         </a>
                                                                     </h3>
@@ -555,7 +559,7 @@
                                                                     {{$item->short_desc}}
                                                                 </p>
                                                                 <div class="post-link">
-                                                                    <a href="blog-details.html"
+                                                                    <a href="{{route('news.show', $item->slug)}}"
                                                                        class="link fs-7 fw-bold text-uppercase text-none mt-1 pb-narrow p-0 border-bottom dark:text-white">
                                                                         <span>Read more</span>
                                                                     </a>
@@ -607,7 +611,8 @@
                                                                 <div class="post-header panel vstack justify-between gap-1">
                                                                     <h3 class="post-title h6 m-0">
                                                                         <a class="text-none hover:text-primary duration-150"
-                                                                           href="blog-details.html">Virtual Reality and
+                                                                           href="{{route('news.show', $item->slug)}}">Virtual
+                                                                            Reality and
                                                                             Mental Health: Exploring the Therapeutic</a>
                                                                     </h3>
                                                                     <div class="post-meta panel hstack justify-between fs-7 text-gray-900 dark:text-white text-opacity-60 d-none md:d-flex">
@@ -646,7 +651,8 @@
                                                                 <div class="post-header panel vstack justify-between gap-1">
                                                                     <h3 class="post-title h6 m-0">
                                                                         <a class="text-none hover:text-primary duration-150"
-                                                                           href="blog-details.html">The Future of
+                                                                           href="{{route('news.show', $item->slug)}}">The
+                                                                            Future of
                                                                             Sustainable Living: Driving Eco-Friendly
                                                                             Lifestyles</a>
                                                                     </h3>
@@ -686,7 +692,8 @@
                                                                 <div class="post-header panel vstack justify-between gap-1">
                                                                     <h3 class="post-title h6 m-0">
                                                                         <a class="text-none hover:text-primary duration-150"
-                                                                           href="blog-details.html">Smart Homes, Smarter
+                                                                           href="{{route('news.show', $item->slug)}}">Smart
+                                                                            Homes, Smarter
                                                                             Living: Exploring IoT and AI</a>
                                                                     </h3>
                                                                     <div class="post-meta panel hstack justify-between fs-7 text-gray-900 dark:text-white text-opacity-60 d-none md:d-flex">
@@ -725,7 +732,8 @@
                                                                 <div class="post-header panel vstack justify-between gap-1">
                                                                     <h3 class="post-title h6 m-0">
                                                                         <a class="text-none hover:text-primary duration-150"
-                                                                           href="blog-details.html">How Businesses Are
+                                                                           href="{{route('news.show', $item->slug)}}">How
+                                                                            Businesses Are
                                                                             Adapting to E-Commerce and AI
                                                                             Integration</a>
                                                                     </h3>
